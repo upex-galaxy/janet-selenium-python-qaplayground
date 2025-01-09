@@ -1,0 +1,5 @@
+python-dotenv
+selenium
+pytest
+pytest-sugar
+requests
