@@ -26,6 +26,7 @@ jobs:
       run: pytest
 
     - name: importar pruebas a x-ray
+      if: always()
       uses: mikepenz/xray-action@v3
       with:
         username: ${{ secrets.XRAY_CLIENT_ID_JANE }}
@@ -36,6 +37,7 @@ jobs:
         projectKey: "GX3"
 
     - name: guardar reporte de pruebas
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: test report
