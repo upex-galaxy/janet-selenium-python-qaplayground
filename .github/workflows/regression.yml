@@ -45,6 +45,7 @@ jobs:
         retentions-days: 10
 
     - name: reportar pruebas en github pages
+      if: always()
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
