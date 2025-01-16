@@ -1,11 +1,10 @@
 import pytest
-from selenium.webdriver import Chrome
+from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
 
 class TestClosePopups:
-    def test_should_display_message_when_closing_popup(self):
-        web = Chrome()
+    def test_should_display_message_when_closing_popup(self, web: WebDriver):
         web.get('https://qaplayground.dev/apps/onboarding-modal/#')
         menu_button = web.find_element(By.CSS_SELECTOR, '.menu-btn')
         menu_button.click()
