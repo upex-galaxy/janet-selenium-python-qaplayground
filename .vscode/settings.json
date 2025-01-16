@@ -4,5 +4,40 @@
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-   "editor.defaultFormatter": "ms-python.debugpy"
+    "editor.defaultFormatter": "ms-python.debugpy",
+    "files.associations": {
+        "*.yml": "yaml",
+        "*.json": "jsonc"
+    },
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "keep",
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter",
+        "editor.formatOnSave": true
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "json.validate.enable": true,
+    "json.format.enable": true,
+    "files.autoSave": "onFocusChange",
+    "editor.cursorBlinking": "expand",
+    "editor.formatOnType": false, // required
+    "editor.formatOnPaste": true, // optional
+    "editor.formatOnSave": true, // optional
+    "editor.formatOnSaveMode": "file", // required to format on save
+    "black-formatter.args": [
+        "--line-length=200",
+        "--skip-string-normalization"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
 }
