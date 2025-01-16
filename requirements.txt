@@ -3,3 +3,4 @@ selenium
 pytest
 pytest-sugar
 requests
+pytest-html
