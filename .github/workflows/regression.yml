@@ -1,0 +1,52 @@
+name: Regression Pipeline
+run-name: ${{github.actor}} ejecuto las pruebas de regresion en ${{github.event.inputs.enviroment}}
+
+on:
+  workflow_dispatch:
+    inputs:
+      enviroment:
+        description: selecionar el ambiente de prueba
+        required: true
+        type: environment
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{github.event.inputs.enviroment}}
+
+    steps:
+    - name: clonar proyecto
+      uses: actions/checkout@v4
+
+    - name: instalar dependencias
+      run: pip install --upgrade pip && pip install -r requirements.txt
+
+    - name: ejecutar pruebas de regresion
+      run: pytest
+
+    - name: importar pruebas a x-ray
+      uses: mikepenz/xray-action@{latest-release}
+      with:
+        username: ${{ secrets.XRAY_CLIENT_ID_JANE }}
+        password: ${{ secrets.XRAY_CLIENT_SECRET_JANE }}
+        testFormat: "junit"
+        testPaths: "reports/pytest-junit.xml"
+        testExecKey: "GX3-5990"
+        projectKey: "GX3"
+
+    - name: guardar reporte de pruebas
+      uses: actions/upload-artifact@v4
+      with:
+        name: test report
+        path: reports
+        retentions-days: 10
+
+    - name: reportar pruebas en github pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        destination_dir: regression
+        publish_dir: ./reports
+        keep_files: true
