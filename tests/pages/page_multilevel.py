@@ -16,13 +16,12 @@ class TestMultilevelPage:
         self.menu_items = lambda: self.driver.find_elements(By.CLASS_NAME, 'menu-item')
 
     def select_navigations_buttons(self):
-        ##WebDriverWait(self.driver, 10).until(EC.visibility_of_all_elements_located(self.navigation_buttons))
         btn = self.navigation_buttons()
         btn[3].click()
 
     def select_menu_items(self):
         nro_lista = len(self.menu_items())
-        index_dd = random.randint(1, nro_lista)
+        index_dd = random.randint(1, nro_lista - 1)
         item_selc = self.menu_items()[index_dd]
         item_selc_text = item_selc.text
         item_selc.click()
