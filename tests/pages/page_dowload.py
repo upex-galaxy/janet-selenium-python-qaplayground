@@ -10,5 +10,6 @@ class TestDownloadPage:
     def __post_init__(self):
         self.button_file_download = lambda: self.driver.find_element(By.ID, 'file')
 
-    def upload_file(self, file_path):
-        self.button_file_download().click()
+    def download_file(self):
+        bnc = self.button_file_download()
+        bnc.click()
