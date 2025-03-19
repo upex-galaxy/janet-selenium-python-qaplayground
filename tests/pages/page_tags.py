@@ -31,8 +31,12 @@ class TestTagsInputBoxPage:
         button_delete = self.driver.find_element(*self.remove_all_button_locator)
         button_delete.click()
 
-    def remove_a_tag_in_container(self):
+    def remove_tag(self, index):
+        delete_a_tag_ac = self.container_tags[index].find_element(By.TAG_NAME, "i")
+        delete_a_tag_ac.click()
+
+    def remove_all_tag_one_to_one(self):
         tabs_count = len(self.container_tags)
         if tabs_count > 0:
-            delete_a_tag_ac = self.container_tags[-1].find_element(By.TAG_NAME, "i")
-            delete_a_tag_ac.click()
+            for index in range(tabs_count):
+                self.remove_tag(index)
